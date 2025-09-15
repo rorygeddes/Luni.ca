@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npx live-server --port=3000 --open=/index.html",
     "start": "npx live-server --port=3000 --open=/index.html",
-    "build": "echo 'Static site - no build step required'",
+    "build": "mkdir -p public && cp index.html survey.html Luni.png public/",
     "preview": "npx live-server --port=3000 --open=/index.html"
   },
   "keywords": [
