@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luni - Smart Budgeting for Students</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'luni-gold': '#D4AF37',
+                        'luni-red': '#FF0000',
+                        'luni-dark-gold': '#B8860B',
+                        'luni-dark-red': '#CC0000'
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-black min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black/90 backdrop-blur-md z-50 border-b border-luni-gold/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <img src="Luni.png" alt="Luni Logo" class="h-8 w-8">
+                    <span class="text-2xl font-bold bg-gradient-to-r from-luni-gold to-luni-red bg-clip-text text-transparent">Luni</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-300 hover:text-luni-gold transition-colors">Features</a>
+                    <a href="#about" class="text-gray-300 hover:text-luni-gold transition-colors">About</a>
+                    <a href="survey.html" class="text-gray-300 hover:text-luni-gold transition-colors">Take Survey</a>
+                    <button class="bg-gradient-to-r from-luni-gold to-luni-red text-black px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                        Coming Soon
+                    </button>
+                </div>
+                <div class="md:hidden">
+                    <button class="text-gray-300 hover:text-luni-gold">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <div class="flex justify-center mb-8">
+                    <div class="relative">
+                        <img src="Luni.png" alt="Luni Logo" class="h-24 w-24 mx-auto drop-shadow-lg">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-luni-gold/20 to-luni-red/20 rounded-full blur-xl"></div>
+                    </div>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    <span class="bg-gradient-to-r from-luni-gold to-luni-red bg-clip-text text-transparent">
+                        Smart Budgeting
+                    </span>
+                    <br>
+                    <span class="text-white">for Students</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Take control of your finances with Luni. Track spending, develop good habits, and manage your money with real-time insights designed specifically for student life.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button class="bg-gradient-to-r from-luni-gold to-luni-red text-black px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-2">
+                        <i class="fas fa-download"></i>
+                        <span>Get Early Access</span>
+                    </button>
+                    <button class="border-2 border-luni-gold text-luni-gold px-8 py-4 rounded-full text-lg font-semibold hover:bg-luni-gold hover:text-black transition-all duration-300 flex items-center space-x-2">
+                        <i class="fas fa-play"></i>
+                        <span>Watch Demo</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 sm:px-6 lg:px-8 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                    Everything You Need to
+                    <span class="bg-gradient-to-r from-luni-gold to-luni-red bg-clip-text text-transparent">Manage Your Money</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Built specifically for students, Luni helps you develop healthy financial habits while tracking your spending in real-time.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-luni-gold/20">
+                    <div class="w-16 h-16 bg-gradient-to-r from-luni-gold to-luni-red rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-black text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Real-Time Tracking</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Monitor your spending habits with live updates and instant notifications. Stay aware of where your money goes with beautiful, easy-to-read visualizations.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-luni-gold/20">
+                    <div class="w-16 h-16 bg-gradient-to-r from-luni-red to-luni-gold rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-piggy-bank text-black text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Smart Savings</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Develop good financial habits with personalized savings goals and automated insights. Learn to budget like a pro with AI-powered recommendations.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-luni-gold/20">
+                    <div class="w-16 h-16 bg-gradient-to-r from-luni-gold to-luni-red rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-black text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Student-Focused</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Designed specifically for student life with features like meal planning, textbook tracking, and social spending insights tailored to your lifestyle.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                        Why <span class="bg-gradient-to-r from-luni-gold to-luni-red bg-clip-text text-transparent">Luni</span>?
+                    </h2>
+                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                        As a student, managing money can be overwhelming. Luni simplifies budgeting by providing real-time insights, helping you develop healthy financial habits, and making money management actually enjoyable.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-6 h-6 bg-gradient-to-r from-luni-gold to-luni-red rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-black text-sm"></i>
+                            </div>
+                            <span class="text-gray-300">Live spending tracking and notifications</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-6 h-6 bg-gradient-to-r from-luni-gold to-luni-red rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-black text-sm"></i>
+                            </div>
+                            <span class="text-gray-300">Personalized budgeting recommendations</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-6 h-6 bg-gradient-to-r from-luni-gold to-luni-red rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-black text-sm"></i>
+                            </div>
+                            <span class="text-gray-300">Student-specific features and insights</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-luni-gold/20 to-luni-red/20 rounded-3xl p-8 backdrop-blur-sm">
+                        <div class="bg-gray-900/90 rounded-2xl p-6 shadow-xl border border-luni-gold/30">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-white">This Month</h3>
+                                <span class="text-sm text-luni-gold font-medium">+$150 saved</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">Food & Dining</span>
+                                    <span class="font-semibold text-white">$320</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-gradient-to-r from-luni-gold to-luni-red h-2 rounded-full" style="width: 64%"></div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-300">Transportation</span>
+                                    <span class="font-semibold text-white">$85</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="bg-gradient-to-r from-luni-red to-luni-gold h-2 rounded-full" style="width: 34%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Survey CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-luni-gold to-luni-red">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                Help Shape the Future of Student Budgeting
+            </h2>
+            <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                Take our quick survey and automatically join our beta program for early access to Luni. Your input will help us build the perfect budgeting app for Canadian students!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="survey.html" class="bg-white text-black px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center space-x-2">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Take Survey & Join Beta</span>
+                </a>
+                <div class="text-white/80 text-sm">
+                    <i class="fas fa-gift mr-2"></i>
+                    Get exclusive early access!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 px-4 sm:px-6 lg:px-8 border-t border-luni-gold/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                    <img src="Luni.png" alt="Luni Logo" class="h-8 w-8">
+                    <span class="text-2xl font-bold">Luni</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-luni-gold transition-colors">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-luni-gold transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-luni-gold transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-luni-gold/30 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Luni. All rights reserved. Coming soon to help students manage their money better.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-black/95');
+            } else {
+                nav.classList.remove('bg-black/95');
+            }
+        });
+    </script>
+</body>
+</html>
