@@ -10,13 +10,13 @@ const Footer: React.FC = () => {
             <span className="text-2xl font-bold">Luni</span>
           </div>
           <div className="flex space-x-6">
-            <a href="#" className="text-gray-400 hover:text-luni-gold transition-colors">
+            <a href="https://twitter.com/luni_app" className="text-gray-400 hover:text-luni-gold transition-colors" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-twitter text-xl"></i>
             </a>
-            <a href="#" className="text-gray-400 hover:text-luni-gold transition-colors">
+            <a href="https://instagram.com/luni_app" className="text-gray-400 hover:text-luni-gold transition-colors" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-instagram text-xl"></i>
             </a>
-            <a href="#" className="text-gray-400 hover:text-luni-gold transition-colors">
+            <a href="https://linkedin.com/company/luni-app" className="text-gray-400 hover:text-luni-gold transition-colors" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-linkedin text-xl"></i>
             </a>
           </div>
