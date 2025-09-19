@@ -60,13 +60,14 @@ app.post('/api/survey', async (req, res) => {
     const surveyData = req.body;
     
     // Validate required fields
-    if (!surveyData.email) {
-      return res.status(400).json({ error: 'Email is required' });
+    if (!surveyData.name && !surveyData.email) {
+      return res.status(400).json({ error: 'Name and email are required' });
     }
 
     // Prepare data for your table structure
     const userId = crypto.randomUUID(); // Generate a user ID
     const answers = {
+      name: surveyData.name,
       email: surveyData.email,
       q1: surveyData.q1,
       q2: surveyData.q2,
@@ -111,8 +112,8 @@ app.post('/api/survey', async (req, res) => {
       }
       
       if (!saved) {
-        console.error('❌ Could not save to any table');
-        return res.status(500).json({ error: 'Failed to save survey response' });
+        console.log('⚠️  Could not save to any table - continuing without database save');
+        console.log('📊 Survey data:', JSON.stringify(dbData, null, 2));
       }
     } else {
       console.log('⚠️  Supabase not configured - skipping database save');

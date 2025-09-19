@@ -37,15 +37,8 @@ const Survey: React.FC = () => {
     {
       id: 'name',
       type: 'text',
-      question: 'What\'s your name?',
-      placeholder: 'Enter your full name',
-      required: true
-    },
-    {
-      id: 'email',
-      type: 'text',
-      question: 'What\'s your email address?',
-      placeholder: 'your.email@example.com',
+      question: 'What\'s your name and email address?',
+      placeholder: 'Enter your full name and email (e.g., John Doe, john@example.com)',
       required: true
     },
     {
@@ -180,6 +173,17 @@ const Survey: React.FC = () => {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && currentQuestion.type === 'text') {
+      e.preventDefault();
+      if (currentQuestionIndex < questions.length - 1) {
+        setCurrentQuestionIndex(prev => prev + 1);
+      } else {
+        handleSubmit();
+      }
+    }
+  };
+
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(prev => prev - 1);
@@ -256,8 +260,8 @@ const Survey: React.FC = () => {
       )}
 
       {/* Flashcard Survey */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="max-w-2xl mx-auto">
+      <section className="px-4 sm:px-6 lg:px-8 pb-20 flex items-center justify-center min-h-[calc(100vh-200px)]">
+        <div className="max-w-2xl mx-auto w-full">
           {/* Progress Bar */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-2">
@@ -297,6 +301,7 @@ const Survey: React.FC = () => {
                       name={currentQuestion.id}
                       value={formData[currentQuestion.id as keyof typeof formData]}
                       onChange={handleInputChange}
+                      onKeyPress={handleKeyPress}
                       className="w-full px-6 py-4 bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent resize-none"
                       placeholder={currentQuestion.placeholder}
                       rows={4}
