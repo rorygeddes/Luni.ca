@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
             <span className="text-2xl font-bold">Luni</span>
           </div>
           <div className="flex space-x-6">
-            <a href="https://instagram.com/luni_app" className="text-gray-400 hover:text-luni-gold transition-colors" target="_blank" rel="noopener noreferrer">
+            <a href="https://instagram.com/luni.students" className="text-gray-400 hover:text-luni-gold transition-colors" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-instagram text-xl"></i>
             </a>
             <a href="https://www.linkedin.com/in/rory-geddes/" className="text-gray-400 hover:text-luni-gold transition-colors" target="_blank" rel="noopener noreferrer">
