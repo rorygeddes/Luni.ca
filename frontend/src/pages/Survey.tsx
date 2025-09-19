@@ -37,8 +37,15 @@ const Survey: React.FC = () => {
     {
       id: 'name',
       type: 'text',
-      question: 'What\'s your name and email address?',
-      placeholder: 'Enter your full name and email (e.g., John Doe, john@example.com)',
+      question: 'What\'s your name?',
+      placeholder: 'Enter your full name',
+      required: true
+    },
+    {
+      id: 'email',
+      type: 'text',
+      question: 'What\'s your email address?',
+      placeholder: 'your.email@example.com',
       required: true
     },
     {
@@ -260,7 +267,7 @@ const Survey: React.FC = () => {
       )}
 
       {/* Flashcard Survey */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-20 flex items-center justify-center min-h-[calc(100vh-200px)]">
+      <section className="px-4 sm:px-6 lg:px-8 pb-20 flex items-center justify-center min-h-[calc(100vh-300px)] pt-20">
         <div className="max-w-2xl mx-auto w-full">
           {/* Progress Bar */}
           <div className="mb-8">

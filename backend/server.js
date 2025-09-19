@@ -60,8 +60,11 @@ app.post('/api/survey', async (req, res) => {
     const surveyData = req.body;
     
     // Validate required fields
-    if (!surveyData.name && !surveyData.email) {
-      return res.status(400).json({ error: 'Name and email are required' });
+    if (!surveyData.name) {
+      return res.status(400).json({ error: 'Name is required' });
+    }
+    if (!surveyData.email) {
+      return res.status(400).json({ error: 'Email is required' });
     }
 
     // Prepare data for your table structure
