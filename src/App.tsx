@@ -9,9 +9,9 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <div className="App min-h-screen bg-black">
+      <div className="App min-h-screen bg-black overflow-x-hidden">
         <Navigation />
-        <main>
+        <main className="bg-black">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/survey" element={<Survey />} />
