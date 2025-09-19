@@ -260,7 +260,7 @@ const Survey: React.FC = () => {
       )}
 
       {/* Flashcard Survey */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-20 flex items-center justify-center min-h-[calc(100vh-200px)] pt-16">
+      <section className="px-4 sm:px-6 lg:px-8 pb-20 flex items-start justify-center pt-4">
         <div className="max-w-2xl mx-auto w-full">
           {/* Progress Bar */}
           <div className="mb-8">
