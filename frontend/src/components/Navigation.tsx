@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from './Logo';
 
 const Navigation: React.FC = () => {
   return (
@@ -7,7 +8,7 @@ const Navigation: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-3">
-            <img src="/logo192.png" alt="Luni Logo" className="h-8 w-8" />
+            <Logo className="h-8 w-8" alt="Luni Logo" />
             <span className="text-2xl font-bold bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">Luni</span>
           </div>
           <div className="hidden md:flex items-center space-x-8">

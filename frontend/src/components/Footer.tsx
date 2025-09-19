@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from './Logo';
 
 const Footer: React.FC = () => {
   return (
@@ -6,7 +7,7 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-3 mb-4 md:mb-0">
-            <img src="/logo192.png" alt="Luni Logo" className="h-8 w-8" />
+            <Logo className="h-8 w-8" alt="Luni Logo" />
             <span className="text-2xl font-bold">Luni</span>
           </div>
           <div className="flex space-x-6">

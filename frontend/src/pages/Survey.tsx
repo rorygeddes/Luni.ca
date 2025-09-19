@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import surveyService from '../services/surveyService';
+import Logo from '../components/Logo';
 
 const Survey: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -76,12 +77,12 @@ const Survey: React.FC = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <img src="/logo192.png" alt="Luni Logo" className="h-20 w-20 mx-auto drop-shadow-lg" />
-                <div className="absolute -inset-4 bg-gradient-to-r from-luni-gold/20 to-luni-accent/20 rounded-full blur-xl"></div>
+              <Logo className="h-20 w-20 mx-auto drop-shadow-lg" alt="Luni Logo" />
+                <div className="absolute -inset-4 bg-gradient-to-r from-system-accent/20 to-system-accent-light/20 rounded-full blur-xl"></div>
             </div>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">
               Help Shape Luni
             </span>
           </h1>
@@ -121,7 +122,7 @@ const Survey: React.FC = () => {
             {/* Question 1 */}
             <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
               <h3 className="text-white text-lg font-semibold mb-6">
-                <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">1.</span>
+                <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">1.</span>
                 How do you currently track your spending?
               </h3>
               <div className="space-y-3">
@@ -144,7 +145,7 @@ const Survey: React.FC = () => {
             {/* Question 2 */}
             <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
               <h3 className="text-white text-lg font-semibold mb-6">
-                <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">2.</span>
+                <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">2.</span>
                 What's your biggest expense category?
               </h3>
               <div className="space-y-3">
@@ -167,7 +168,7 @@ const Survey: React.FC = () => {
             {/* Question 3 */}
             <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
               <h3 className="text-white text-lg font-semibold mb-6">
-                <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">3.</span>
+                <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">3.</span>
                 How often do you currently track your expenses?
               </h3>
               <div className="space-y-3">
@@ -190,7 +191,7 @@ const Survey: React.FC = () => {
             {/* Question 4 */}
             <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
               <h3 className="text-white text-lg font-semibold mb-6">
-                <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">4.</span>
+                <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">4.</span>
                 Do you currently stick to a budget?
               </h3>
               <div className="space-y-3">
@@ -213,7 +214,7 @@ const Survey: React.FC = () => {
             {/* Question 5 */}
             <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
               <h3 className="text-white text-lg font-semibold mb-6">
-                <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">5.</span>
+                <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">5.</span>
                 How do you currently split expenses with roommates/friends?
               </h3>
               <div className="space-y-3">
@@ -236,7 +237,7 @@ const Survey: React.FC = () => {
             {/* Question 6 */}
             <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
               <h3 className="text-white text-lg font-semibold mb-6">
-                <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">6.</span>
+                <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">6.</span>
                 How confident are you in managing your finances?
               </h3>
               <div className="space-y-3">
@@ -259,7 +260,7 @@ const Survey: React.FC = () => {
             {/* Question 7 */}
             <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
               <h3 className="text-white text-lg font-semibold mb-6">
-                <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">7.</span>
+                <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">7.</span>
                 What would motivate you to use a budgeting app regularly?
               </h3>
               <div className="space-y-3">
@@ -282,7 +283,7 @@ const Survey: React.FC = () => {
             {/* Question 8 */}
             <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
               <h3 className="text-white text-lg font-semibold mb-6">
-                <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">8.</span>
+                <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">8.</span>
                 How important is it for the app to sync with your bank account?
               </h3>
               <div className="space-y-3">
@@ -305,7 +306,7 @@ const Survey: React.FC = () => {
             {/* Question 9 */}
             <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
               <h3 className="text-white text-lg font-semibold mb-6">
-                <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">9.</span>
+                <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">9.</span>
                 What platform would you primarily use?
               </h3>
               <div className="space-y-3">
@@ -328,7 +329,7 @@ const Survey: React.FC = () => {
             {/* Question 10 */}
             <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
               <h3 className="text-white text-lg font-semibold mb-6">
-                <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">10.</span>
+                <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">10.</span>
                 What's your preferred way to input expenses?
               </h3>
               <div className="space-y-3">
@@ -351,7 +352,7 @@ const Survey: React.FC = () => {
             {/* Question 11 */}
             <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
               <label className="block text-white text-lg font-semibold mb-4">
-                <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">11.</span>
+                <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">11.</span>
                 What's your biggest financial challenge as a student?
               </label>
               <textarea
@@ -367,7 +368,7 @@ const Survey: React.FC = () => {
             {/* Question 12 */}
             <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
               <label className="block text-white text-lg font-semibold mb-4">
-                <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">12.</span>
+                <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">12.</span>
                 Any additional features or suggestions?
               </label>
               <textarea

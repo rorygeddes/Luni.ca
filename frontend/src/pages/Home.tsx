@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../components/Logo';
 
 const Home: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ const Home: React.FC = () => {
           <div className="text-center">
             <div className="flex justify-center mb-8">
               <div className="relative">
-                <img src="/logo192.png" alt="Luni Logo" className="h-24 w-24 mx-auto drop-shadow-lg" />
+                <Logo className="h-24 w-24 mx-auto drop-shadow-lg" alt="Luni Logo" />
                 <div className="absolute -inset-4 bg-gradient-to-r from-system-accent/20 to-system-accent-light/20 rounded-full blur-xl"></div>
               </div>
             </div>
