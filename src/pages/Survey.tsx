@@ -47,19 +47,19 @@ const Survey: React.FC = () => {
 
   if (submitStatus === 'success') {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-system-bg flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8 text-center">
-          <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
-            <div className="w-16 h-16 bg-gradient-to-r from-luni-gold to-luni-accent rounded-full flex items-center justify-center mx-auto mb-4">
-              <i className="fas fa-check text-black text-2xl"></i>
+          <div className="bg-system-gold-light/80 backdrop-blur-sm rounded-2xl p-8 border border-system-accent/30">
+            <div className="w-16 h-16 bg-gradient-to-r from-system-accent to-system-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
+              <i className="fas fa-check text-white text-2xl"></i>
             </div>
-            <h2 className="text-2xl font-bold text-white mb-4">Thank You!</h2>
-            <p className="text-gray-300 mb-6">
+            <h2 className="text-2xl font-bold text-system-text mb-4">Thank You!</h2>
+            <p className="text-system-text-muted mb-6">
               Your survey has been submitted successfully. We'll be in touch soon with updates about Luni!
             </p>
             <button
               onClick={() => window.location.href = '/'}
-              className="bg-gradient-to-r from-luni-gold to-luni-accent text-black font-semibold py-3 px-6 rounded-full transition duration-300 hover:shadow-lg"
+              className="bg-gradient-to-r from-system-accent to-system-accent-light text-white font-semibold py-3 px-6 rounded-full transition duration-300 hover:shadow-lg"
             >
               Back to Home
             </button>
@@ -70,26 +70,26 @@ const Survey: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-system-bg">
       {/* Survey Header */}
       <section className="pt-20 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex justify-center mb-8">
             <div className="relative">
               <img src="/logo192.png" alt="Luni Logo" className="h-20 w-20 mx-auto drop-shadow-lg" />
-                <div className="absolute -inset-4 bg-gradient-to-r from-luni-gold/20 to-luni-accent/20 rounded-full blur-xl"></div>
+                <div className="absolute -inset-4 bg-gradient-to-r from-system-accent/20 to-system-accent-light/20 rounded-full blur-xl"></div>
             </div>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">
               Help Shape Luni
             </span>
           </h1>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-system-text-muted mb-8 max-w-2xl mx-auto leading-relaxed">
             Take our quick survey and automatically join our beta program for early access to Canada's premier student budgeting app.
           </p>
-          <div className="bg-gradient-to-r from-luni-gold/20 to-luni-accent/20 rounded-2xl p-6 border border-luni-gold/30">
-            <p className="text-luni-gold font-semibold">
+          <div className="bg-gradient-to-r from-system-accent/20 to-system-accent-light/20 rounded-2xl p-6 border border-system-accent/30">
+            <p className="text-system-accent font-semibold">
               <i className="fas fa-gift mr-2"></i>
               Complete the survey and get exclusive early access to Luni!
             </p>
