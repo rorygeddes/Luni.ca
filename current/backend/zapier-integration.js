@@ -2,6 +2,7 @@
 // This module handles sending survey data to Zapier for email notifications
 
 const axios = require('axios');
+const crypto = require('crypto');
 
 /**
  * Send survey data to Zapier webhook
@@ -14,8 +15,8 @@ async function sendToZapier(surveyData, zapierWebhookUrl) {
     const payload = {
       // Basic survey info
       email: surveyData.email,
-      submitted_at: surveyData.submitted_at,
-      survey_id: surveyData.id,
+      submitted_at: new Date().toISOString(),
+      survey_id: crypto.randomUUID(),
       
       // Survey responses
       current_tracking_method: surveyData.q1,
@@ -83,7 +84,7 @@ function formatSurveyDataForEmail(surveyData) {
   return {
     // Header info
     email: surveyData.email,
-    submission_date: new Date(surveyData.submitted_at).toLocaleDateString('en-CA', {
+    submission_date: new Date().toLocaleDateString('en-CA', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
