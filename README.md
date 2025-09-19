@@ -1,46 +1,131 @@
-# Getting Started with Create React App
+# Luni - Smart Budgeting for Students
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React + Node.js budgeting app for students with survey functionality.
 
-## Available Scripts
+## 📁 Project Structure
 
-In the project directory, you can run:
+```
+├── frontend/          # React app (TypeScript + Tailwind)
+├── backend/           # Node.js API (Express + Supabase)
+├── docs/              # Documentation & PRD
+├── deploy/            # Deployment files
+└── package.json       # Monorepo config
+```
 
-### `npm start`
+## 🚀 Quick Start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 1. Install Dependencies
+```bash
+npm install
+npm run install:all
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 2. Setup Environment
+```bash
+# Backend
+cp backend/env.example backend/.env
+# Edit backend/.env with your Supabase & Zapier keys
 
-### `npm test`
+# Frontend  
+cp frontend/.env.example frontend/.env
+# Edit frontend/.env with your API URL
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. Start Development
+```bash
+npm run dev
+```
 
-### `npm run build`
+**Access your app:**
+- Frontend: http://localhost:3000
+- Backend: http://localhost:5001
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📁 Directory Details
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Frontend (`/frontend`)
+- **React TypeScript** application
+- **Tailwind CSS** for styling
+- **React Router** for navigation
+- **Axios** for API calls
+- **Font Awesome** for icons
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Backend (`/backend`)
+- **Express.js** REST API
+- **Supabase** integration for database
+- **Zapier** integration for automation
+- **CORS** enabled for cross-origin requests
 
-### `npm run eject`
+### Documentation (`/docs`)
+- Product Requirements Documents
+- Survey questions and specifications
+- Development guidelines
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Deployment (`/deployment`)
+- Production server configurations
+- Deployment scripts and instructions
+- Environment-specific configurations
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🛠️ Available Scripts
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Root Level Commands
+- `npm run dev` - Start both frontend and backend in development mode
+- `npm run build` - Build both frontend and backend for production
+- `npm run setup` - Clean install all dependencies
+- `npm run clean` - Remove all node_modules
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Frontend Commands
+- `npm run dev:frontend` - Start frontend development server
+- `npm run build:frontend` - Build frontend for production
 
-## Learn More
+### Backend Commands  
+- `npm run dev:backend` - Start backend development server
+- `npm run build:backend` - Build backend for production
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🔧 Environment Configuration
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Backend Environment Variables
+```env
+PORT=5001
+SUPABASE_URL=your_supabase_url
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+ZAPIER_WEBHOOK_URL=your_zapier_webhook_url
+FRONTEND_URL=http://localhost:3000,https://yourdomain.com
+```
+
+### Frontend Environment Variables
+```env
+REACT_APP_API_URL=http://localhost:5001
+```
+
+## 🚀 Deployment
+
+### Frontend (Vercel)
+1. Connect your GitHub repository to Vercel
+2. Set build command: `cd frontend && npm run build`
+3. Set output directory: `frontend/build`
+4. Configure environment variables in Vercel dashboard
+
+### Backend (Render)
+1. Connect your GitHub repository to Render
+2. Set build command: `cd backend && npm install`
+3. Set start command: `cd backend && node server.js`
+4. Configure environment variables in Render dashboard
+
+## 📊 Features
+
+- **Survey System**: Collect user feedback with Supabase storage
+- **Zapier Integration**: Automate email notifications and workflows
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **TypeScript**: Type-safe development
+- **Modern UI**: Clean, professional design with gold accent colors
+
+## 🔒 Security
+
+- Environment variables for sensitive data
+- CORS configuration for API security
+- Input validation and sanitization
+- Secure API endpoints
+
+## 📝 License
+
+MIT License - see LICENSE file for details
