@@ -47,19 +47,19 @@ const Survey: React.FC = () => {
 
   if (submitStatus === 'success') {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-system-bg flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8 text-center">
-          <div className="bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-luni-gold/20">
-            <div className="w-16 h-16 bg-gradient-to-r from-luni-gold to-luni-accent rounded-full flex items-center justify-center mx-auto mb-4">
-              <i className="fas fa-check text-black text-2xl"></i>
+          <div className="bg-system-gold-light/80 backdrop-blur-sm rounded-2xl p-8 border border-system-accent/30">
+            <div className="w-16 h-16 bg-gradient-to-r from-system-accent to-system-accent-light rounded-full flex items-center justify-center mx-auto mb-4">
+              <i className="fas fa-check text-white text-2xl"></i>
             </div>
-            <h2 className="text-2xl font-bold text-white mb-4">Thank You!</h2>
-            <p className="text-gray-300 mb-6">
+            <h2 className="text-2xl font-bold text-system-text mb-4">Thank You!</h2>
+            <p className="text-system-text-muted mb-6">
               Your survey has been submitted successfully. We'll be in touch soon with updates about Luni!
             </p>
             <button
               onClick={() => window.location.href = '/'}
-              className="bg-gradient-to-r from-luni-gold to-luni-accent text-black font-semibold py-3 px-6 rounded-full transition duration-300 hover:shadow-lg"
+              className="bg-gradient-to-r from-system-accent to-system-accent-light text-white font-semibold py-3 px-6 rounded-full transition duration-300 hover:shadow-lg"
             >
               Back to Home
             </button>
@@ -70,7 +70,7 @@ const Survey: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-system-bg">
       {/* Survey Header */}
       <section className="pt-20 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
@@ -113,7 +113,7 @@ const Survey: React.FC = () => {
                 required
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full px-6 py-4 bg-gray-800 border border-luni-gold/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-luni-gold focus:border-transparent"
+                className="w-full px-6 py-4 bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent"
                 placeholder="your.email@example.com"
               />
             </div>
@@ -359,7 +359,7 @@ const Survey: React.FC = () => {
                 rows={3}
                 value={formData.q11}
                 onChange={handleInputChange}
-                className="w-full px-6 py-4 bg-gray-800 border border-luni-gold/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-luni-gold focus:border-transparent"
+                className="w-full px-6 py-4 bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent"
                 placeholder="Tell us about your financial challenges..."
               />
             </div>
@@ -375,7 +375,7 @@ const Survey: React.FC = () => {
                 rows={3}
                 value={formData.q12}
                 onChange={handleInputChange}
-                className="w-full px-6 py-4 bg-gray-800 border border-luni-gold/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-luni-gold focus:border-transparent"
+                className="w-full px-6 py-4 bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent"
                 placeholder="What else would you like to see in a budgeting app?"
               />
             </div>
@@ -383,14 +383,14 @@ const Survey: React.FC = () => {
             {/* Submit Button */}
             <div className="text-center">
               {submitStatus === 'error' && (
-                <div className="mb-4 p-3 bg-red-900/50 border border-red-500 text-red-300 rounded-xl">
+                <div className="mb-4 p-3 bg-red-100 border border-red-500 text-red-800 rounded-xl">
                   There was an error submitting your survey. Please try again.
                 </div>
               )}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-gradient-to-r from-luni-gold to-luni-accent text-black font-semibold py-4 px-8 rounded-full text-lg transition duration-300 hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2 mx-auto"
+                className="bg-gradient-to-r from-system-accent to-system-accent-light text-white font-semibold py-4 px-8 rounded-full text-lg transition duration-300 hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2 mx-auto"
               >
                 <i className="fas fa-paper-plane"></i>
                 <span>{isSubmitting ? 'Submitting...' : 'Submit Survey'}</span>

@@ -2,16 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Global white theme variables */
+  --system-bg: #FFFFFF;
+  --system-text: #000000;
+  --system-text-muted: #666666;
+  --system-border: #E5E5E5;
+  --system-accent: #B8860B;
+  --system-accent-light: #DAA520;
+  --system-deep-red: #8B0000;
+  --system-gold-light: #F8F8F8;
+  --system-gold-medium: #E5E5E5;
+  --system-gold-dark: #CCCCCC;
+}
+
+html {
+  background-color: var(--system-bg);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease;
+}
+
 body {
   margin: 0;
+  padding: 0;
+  background-color: var(--system-bg);
+  color: var(--system-text);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  background-color: var(--system-bg);
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Invisible scrollbar */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+}
+
+/* Ensure all elements use the global theme */
+* {
+  box-sizing: border-box;
+}
+
+body, html, #root {
+  background-color: var(--system-bg) !important;
+  color: var(--system-text) !important;
 }
