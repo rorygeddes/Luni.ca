@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-system-bg">
       {/* Hero Section */}
       <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -11,25 +11,25 @@ const Home: React.FC = () => {
             <div className="flex justify-center mb-8">
               <div className="relative">
                 <img src="/logo192.png" alt="Luni Logo" className="h-24 w-24 mx-auto drop-shadow-lg" />
-                <div className="absolute -inset-4 bg-gradient-to-r from-luni-gold/20 to-luni-accent/20 rounded-full blur-xl"></div>
+                <div className="absolute -inset-4 bg-gradient-to-r from-system-accent/20 to-system-accent-light/20 rounded-full blur-xl"></div>
               </div>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">
                 Smart Budgeting
               </span>
               <br />
-              <span className="text-white">for Students</span>
+              <span className="text-system-text">for Students</span>
             </h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-system-text-muted mb-8 max-w-3xl mx-auto leading-relaxed">
               Take control of your finances with Luni. Track spending, develop good habits, and manage your money with real-time insights designed specifically for student life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="bg-gradient-to-r from-luni-gold to-luni-accent text-black px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-2">
+              <button className="bg-gradient-to-r from-system-accent to-system-accent-light text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-2">
                 <i className="fas fa-download"></i>
                 <span>Get Early Access</span>
               </button>
-              <button className="border-2 border-luni-gold text-luni-gold px-8 py-4 rounded-full text-lg font-semibold hover:bg-luni-gold hover:text-black transition-all duration-300 flex items-center space-x-2">
+              <button className="border-2 border-system-accent text-system-accent px-8 py-4 rounded-full text-lg font-semibold hover:bg-system-accent hover:text-white transition-all duration-300 flex items-center space-x-2">
                 <i className="fas fa-play"></i>
                 <span>Watch Demo</span>
               </button>
@@ -39,14 +39,14 @@ const Home: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-black">
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-system-bg">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-system-text mb-4">
               Everything You Need to
-              <span className="bg-gradient-to-r from-luni-gold to-luni-accent bg-clip-text text-transparent"> Manage Your Money</span>
+              <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent"> Manage Your Money</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-system-text-muted max-w-2xl mx-auto">
               Built specifically for students, Luni helps you develop healthy financial habits while tracking your spending in real-time.
             </p>
           </div>

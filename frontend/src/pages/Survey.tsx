@@ -113,7 +113,7 @@ const Survey: React.FC = () => {
                 required
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full px-6 py-4 bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent"
+                className="w-full px-6 py-4 bg-system-gold-light dark:bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent"
                 placeholder="your.email@example.com"
               />
             </div>
@@ -359,7 +359,7 @@ const Survey: React.FC = () => {
                 rows={3}
                 value={formData.q11}
                 onChange={handleInputChange}
-                className="w-full px-6 py-4 bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent"
+                className="w-full px-6 py-4 bg-system-gold-light dark:bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent"
                 placeholder="Tell us about your financial challenges..."
               />
             </div>
@@ -375,7 +375,7 @@ const Survey: React.FC = () => {
                 rows={3}
                 value={formData.q12}
                 onChange={handleInputChange}
-                className="w-full px-6 py-4 bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent"
+                className="w-full px-6 py-4 bg-system-gold-light dark:bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent"
                 placeholder="What else would you like to see in a budgeting app?"
               />
             </div>
@@ -383,7 +383,7 @@ const Survey: React.FC = () => {
             {/* Submit Button */}
             <div className="text-center">
               {submitStatus === 'error' && (
-                <div className="mb-4 p-3 bg-red-100 border border-red-500 text-red-800 rounded-xl">
+                <div className="mb-4 p-3 bg-red-100 dark:bg-red-900/50 border border-red-500 text-red-800 dark:text-red-300 rounded-xl">
                   There was an error submitting your survey. Please try again.
                 </div>
               )}
