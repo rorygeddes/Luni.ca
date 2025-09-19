@@ -10,7 +10,7 @@ const { sendToZapier, formatSurveyDataForEmail } = require('./zapier-integration
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // Initialize Supabase client (with proper validation)
 let supabase = null;
