@@ -1,0 +1,1 @@
+I want to have the survey inside my website that i build with cursor. then, when the user hits submit, the answers get saved to supabase's database. I don't want them to go to supabase if thats what you mean. After the answers are stored in this database, I want that info to be triggered in zapier, and then i want zapier to send me an email going over the users answers.
