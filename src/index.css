@@ -2,29 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Light mode variables */
+  --system-bg: #ffffff;
+  --system-text: #1a1a1a;
+  --system-text-muted: #666666;
+  --system-border: #e5e5e5;
+  --system-accent: #8B6914;
+  --system-accent-light: #B8941F;
+  --system-deep-red: #3D1515;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode variables */
+    --system-bg: #000000;
+    --system-text: #ffffff;
+    --system-text-muted: #a3a3a3;
+    --system-border: #333333;
+    --system-accent: #C9A96E;
+    --system-accent-light: #D4AF37;
+    --system-deep-red: #4A1A1A;
+  }
+}
+
 html {
-  background-color: #000000;
+  background-color: var(--system-bg);
   overflow-x: hidden;
+  transition: background-color 0.3s ease;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #000000;
+  background-color: var(--system-bg);
+  color: var(--system-text);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #root {
-  background-color: #000000;
+  background-color: var(--system-bg);
   min-height: 100vh;
+  transition: background-color 0.3s ease;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Custom scrollbar for better theming */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--system-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--system-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--system-text-muted);
 }
