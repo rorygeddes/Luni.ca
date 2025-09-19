@@ -77,7 +77,7 @@ const Survey: React.FC = () => {
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <Logo className="h-20 w-20 mx-auto drop-shadow-lg" alt="Luni Logo" />
+              <Logo className="h-20 w-20 mx-auto" alt="Luni Logo" />
                 <div className="absolute -inset-4 bg-gradient-to-r from-system-accent/20 to-system-accent-light/20 rounded-full blur-xl"></div>
             </div>
           </div>
