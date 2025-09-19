@@ -4,7 +4,7 @@ import Logo from '../components/Logo';
 
 const Home: React.FC = () => {
   return (
-    <div className="min-h-screen bg-system-bg">
+    <div className="min-h-screen relative">
       {/* Hero Section */}
       <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-system-bg">
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-system-text mb-4">

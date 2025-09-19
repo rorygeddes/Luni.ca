@@ -4,7 +4,7 @@ import Logo from './Logo';
 
 const Navigation: React.FC = () => {
   return (
-    <nav className="fixed top-0 w-full bg-system-bg/90 backdrop-blur-md z-50 border-b border-system-accent/30">
+    <nav className="fixed top-0 w-full bg-system-bg/80 backdrop-blur-lg z-50 border-b border-red-glow-soft/30 shadow-lg shadow-red-glow-subtle/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-3">

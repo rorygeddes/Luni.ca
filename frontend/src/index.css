@@ -14,6 +14,11 @@
   --system-gold-light: #F8F8F8;
   --system-gold-medium: #E5E5E5;
   --system-gold-dark: #CCCCCC;
+  /* Red glow effect colors */
+  --red-glow-primary: #FF6B6B;
+  --red-glow-secondary: #FF8E8E;
+  --red-glow-soft: #FFB3B3;
+  --red-glow-subtle: #FFE5E5;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,19 +34,32 @@
     --system-gold-light: #1A1A1A;
     --system-gold-medium: #2D2D2D;
     --system-gold-dark: #404040;
+    /* Dark mode red glow effect colors */
+    --red-glow-primary: #FF4444;
+    --red-glow-secondary: #FF6666;
+    --red-glow-soft: #FF8888;
+    --red-glow-subtle: #FFAAAA;
   }
 }
 
 html {
-  background-color: var(--system-bg);
+  background: linear-gradient(135deg, var(--system-bg) 0%, var(--red-glow-subtle) 25%, var(--system-bg) 50%, var(--red-glow-soft) 75%, var(--system-bg) 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
   overflow-x: hidden;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--system-bg);
+  background: transparent;
   color: var(--system-text);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -49,13 +67,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 #root {
-  background-color: var(--system-bg);
+  background: transparent;
   min-height: 100vh;
-  transition: background-color 0.3s ease;
+  position: relative;
 }
 
 code {
