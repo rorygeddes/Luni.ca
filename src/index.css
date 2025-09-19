@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  /* Global light gold theme variables */
-  --system-bg: #F4E4BC;
+  /* Global white theme variables */
+  --system-bg: #FFFFFF;
   --system-text: #000000;
-  --system-text-muted: #333333;
-  --system-border: #D4AF37;
+  --system-text-muted: #666666;
+  --system-border: #E5E5E5;
   --system-accent: #B8860B;
   --system-accent-light: #DAA520;
   --system-deep-red: #8B0000;
-  --system-gold-light: #F5E6A3;
-  --system-gold-medium: #D4AF37;
-  --system-gold-dark: #B8860B;
+  --system-gold-light: #F8F8F8;
+  --system-gold-medium: #E5E5E5;
+  --system-gold-dark: #CCCCCC;
 }
 
 html {

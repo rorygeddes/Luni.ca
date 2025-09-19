@@ -7,11 +7,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Light gold theme colors
-        'luni-gold': '#D4AF37',
-        'luni-gold-light': '#F5E6A3',
-        'luni-gold-medium': '#D4AF37',
-        'luni-gold-dark': '#B8860B',
+        // White theme colors
+        'luni-gold': '#B8860B',
+        'luni-gold-light': '#F8F8F8',
+        'luni-gold-medium': '#E5E5E5',
+        'luni-gold-dark': '#CCCCCC',
         'luni-red': '#8B0000',
         'luni-accent': '#B8860B',
         'luni-accent-light': '#DAA520',
