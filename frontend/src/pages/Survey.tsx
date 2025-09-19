@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import surveyService from '../services/surveyService';
+import Logo from '../components/Logo';
 
 interface SurveyQuestion {
   id: string;
@@ -236,6 +237,27 @@ const Survey: React.FC = () => {
 
   return (
     <div className="min-h-screen relative">
+      {/* Survey Header - Only show on first question */}
+      {currentQuestionIndex === 0 && (
+        <section className="pt-16 pb-8 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-8">
+              <div className="relative">
+                <Logo className="h-20 w-20 mx-auto" alt="Luni Logo" />
+                <div className="absolute -inset-4 bg-gradient-to-r from-system-accent/20 to-system-accent-light/20 rounded-full blur-xl"></div>
+              </div>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-system-accent to-system-accent-light bg-clip-text text-transparent">
+                Help Shape Luni
+              </span>
+            </h1>
+            <p className="text-xl text-system-text-muted mb-8 max-w-2xl mx-auto leading-relaxed">
+              Take our quick survey and automatically join our beta program for early access to Canada's premier student budgeting app.
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* Flashcard Survey */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20 flex items-center justify-center min-h-[calc(100vh-200px)] pt-16">
