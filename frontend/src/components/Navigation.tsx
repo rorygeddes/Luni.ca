@@ -21,9 +21,9 @@ const Navigation: React.FC = () => {
             <Link to="/survey" className="text-system-text-muted hover:text-system-accent transition-colors">
               Take Survey
             </Link>
-            <button className="bg-gradient-to-r from-system-accent to-system-accent-light text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-              Coming Soon
-            </button>
+                <Link to="/survey" className="bg-gradient-to-r from-system-accent to-system-accent-light text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                  Take Survey
+                </Link>
           </div>
           <div className="md:hidden">
             <button className="text-system-text-muted hover:text-system-accent">

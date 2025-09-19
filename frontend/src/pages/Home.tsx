@@ -25,16 +25,12 @@ const Home: React.FC = () => {
             <p className="text-xl text-system-text-muted mb-8 max-w-3xl mx-auto leading-relaxed">
               Take control of your finances with Luni. Track spending, develop good habits, and manage your money with real-time insights designed specifically for student life.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="bg-gradient-to-r from-system-accent to-system-accent-light text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-2">
-                <i className="fas fa-download"></i>
-                <span>Get Early Access</span>
-              </button>
-              <button className="border-2 border-system-accent text-system-accent px-8 py-4 rounded-full text-lg font-semibold hover:bg-system-accent hover:text-white transition-all duration-300 flex items-center space-x-2">
-                <i className="fas fa-play"></i>
-                <span>Watch Demo</span>
-              </button>
-            </div>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Link to="/survey" className="bg-gradient-to-r from-system-accent to-system-accent-light text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-2">
+                    <i className="fas fa-clipboard-list"></i>
+                    <span>Become a Beta Access User</span>
+                  </Link>
+                </div>
           </div>
         </div>
       </section>
@@ -158,12 +154,12 @@ const Home: React.FC = () => {
             Help Shape the Future of Student Budgeting
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Take our quick survey and automatically join our beta program for early access to Luni. Your input will help us build the perfect budgeting app for Canadian students!
+            Take the survey to be a part of the beta tester access. Your input will help us build the perfect budgeting app for Canadian students!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/survey" className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center space-x-2">
               <i className="fas fa-clipboard-list"></i>
-              <span>Take Survey & Join Beta</span>
+              <span>Become a Beta Access User</span>
             </Link>
             <div className="text-white/80 text-sm">
               <i className="fas fa-gift mr-2"></i>
