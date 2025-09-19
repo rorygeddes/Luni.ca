@@ -390,7 +390,7 @@ const Survey: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-gradient-to-r from-luni-gold to-luni-accent text-black font-semibold py-4 px-8 rounded-full text-lg transition duration-300 hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2 mx-auto"
+                className="bg-gradient-to-r from-system-accent to-system-accent-light text-white font-semibold py-4 px-8 rounded-full text-lg transition duration-300 hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2 mx-auto"
               >
                 <i className="fas fa-paper-plane"></i>
                 <span>{isSubmitting ? 'Submitting...' : 'Submit Survey'}</span>
