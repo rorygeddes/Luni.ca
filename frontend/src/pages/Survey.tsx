@@ -37,15 +37,8 @@ const Survey: React.FC = () => {
     {
       id: 'name',
       type: 'text',
-      question: 'What\'s your name?',
+      question: 'What\'s your name and email address?',
       placeholder: 'Enter your full name',
-      required: true
-    },
-    {
-      id: 'email',
-      type: 'text',
-      question: 'What\'s your email address?',
-      placeholder: 'your.email@example.com',
       required: true
     },
     {
@@ -180,6 +173,12 @@ const Survey: React.FC = () => {
     }
   };
 
+  const handleNext = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(prev => prev + 1);
+    }
+  };
+
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && currentQuestion.type === 'text') {
       e.preventDefault();
@@ -304,15 +303,42 @@ const Survey: React.FC = () => {
               {currentQuestion.type === 'text' ? (
                 <form onSubmit={handleTextSubmit}>
                   <div className="space-y-4">
-                    <textarea
-                      name={currentQuestion.id}
-                      value={formData[currentQuestion.id as keyof typeof formData]}
-                      onChange={handleInputChange}
-                      onKeyPress={handleKeyPress}
-                      className="w-full px-6 py-4 bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent resize-none"
-                      placeholder={currentQuestion.placeholder}
-                      rows={4}
-                    />
+                    {currentQuestionIndex === 0 ? (
+                      // Special case for name/email question - show both fields
+                      <div className="space-y-4">
+                        <input
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          onKeyPress={handleKeyPress}
+                          className="w-full px-6 py-4 bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent"
+                          placeholder="Enter your full name"
+                          required
+                        />
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          onKeyPress={handleKeyPress}
+                          className="w-full px-6 py-4 bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent"
+                          placeholder="your.email@example.com"
+                          required
+                        />
+                      </div>
+                    ) : (
+                      // Regular text questions
+                      <textarea
+                        name={currentQuestion.id}
+                        value={formData[currentQuestion.id as keyof typeof formData]}
+                        onChange={handleInputChange}
+                        onKeyPress={handleKeyPress}
+                        className="w-full px-6 py-4 bg-system-gold-light border border-system-accent/30 rounded-xl text-system-text placeholder-system-text-muted focus:outline-none focus:ring-2 focus:ring-system-accent focus:border-transparent resize-none"
+                        placeholder={currentQuestion.placeholder}
+                        rows={4}
+                      />
+                    )}
                     <div className="flex justify-between items-center pt-4">
                       {currentQuestionIndex > 0 && (
                         <button
@@ -375,8 +401,9 @@ const Survey: React.FC = () => {
                     </button>
                   ))}
                   
-                  {currentQuestion.type === 'checkbox' && currentQuestionIndex > 0 && (
-                    <div className="flex justify-between items-center pt-6">
+                  {/* Navigation buttons for all radio and checkbox questions */}
+                  <div className="flex justify-between items-center pt-6">
+                    {currentQuestionIndex > 0 && (
                       <button
                         type="button"
                         onClick={handlePrevious}
@@ -385,16 +412,30 @@ const Survey: React.FC = () => {
                         <i className="fas fa-arrow-left"></i>
                         <span>Previous</span>
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => currentQuestionIndex === questions.length - 1 ? handleSubmit() : setCurrentQuestionIndex(prev => prev + 1)}
-                        className="bg-gradient-to-r from-system-accent to-system-accent-light text-white font-semibold py-3 px-6 rounded-full transition duration-300 hover:shadow-lg flex items-center space-x-2"
-                      >
-                        <span>{currentQuestionIndex === questions.length - 1 ? 'Submit Survey' : 'Next'}</span>
-                        <i className="fas fa-arrow-right"></i>
-                      </button>
+                    )}
+                    <div className="ml-auto">
+                      {currentQuestionIndex === questions.length - 1 ? (
+                        <button
+                          type="button"
+                          onClick={handleSubmit}
+                          disabled={isSubmitting}
+                          className="bg-gradient-to-r from-system-accent to-system-accent-light text-white font-semibold py-3 px-6 rounded-full transition duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                        >
+                          <i className="fas fa-paper-plane"></i>
+                          <span>{isSubmitting ? 'Submitting...' : 'Submit Survey'}</span>
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={handleNext}
+                          className="bg-gradient-to-r from-system-accent to-system-accent-light text-white font-semibold py-3 px-6 rounded-full transition duration-300 hover:shadow-lg flex items-center space-x-2"
+                        >
+                          <span>Next</span>
+                          <i className="fas fa-arrow-right"></i>
+                        </button>
+                      )}
                     </div>
-                  )}
+                  </div>
                 </div>
               )}
             </div>
