@@ -5,10 +5,15 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || (process.env.NODE_ENV === 
 const surveyService = {
   async submitSurvey(surveyData: any) {
     try {
+      console.log('Submitting survey to:', `${API_BASE_URL}/api/survey`);
+      console.log('Survey data:', surveyData);
       const response = await axios.post(`${API_BASE_URL}/api/survey`, surveyData);
+      console.log('Survey response:', response.data);
       return response.data;
     } catch (error) {
       console.error('Error submitting survey:', error);
+      console.error('Error details:', error.response?.data);
+      console.error('Error status:', error.response?.status);
       throw error;
     }
   },
