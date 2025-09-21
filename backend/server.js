@@ -37,10 +37,11 @@ app.use(cors({
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
-    // Allow Vercel deployments and localhost
+    // Allow Vercel deployments, localhost, and luni.ca domains (with and without www)
     if (allowedOrigins.indexOf(origin) !== -1 || 
         origin.includes('vercel.app') || 
-        origin.includes('localhost')) {
+        origin.includes('localhost') ||
+        origin.includes('luni.ca')) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
