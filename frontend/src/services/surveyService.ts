@@ -10,7 +10,7 @@ const surveyService = {
       const response = await axios.post(`${API_BASE_URL}/api/survey`, surveyData);
       console.log('Survey response:', response.data);
       return response.data;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error submitting survey:', error);
       console.error('Error details:', error.response?.data);
       console.error('Error status:', error.response?.status);
