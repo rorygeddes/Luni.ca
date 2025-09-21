@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "npm install && echo \"Backend build completed\" && exit 0",
+    "build": "npm ci && echo \"Backend build completed\" && exit 0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -28,5 +28,9 @@
     "supabase"
   ],
   "author": "Rory Geddes",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0 <21.0.0",
+    "npm": ">=8.0.0"
+  }
 }
