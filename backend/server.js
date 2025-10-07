@@ -5,12 +5,18 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 const { createClient } = require('@supabase/supabase-js');
 const { sendToZapier, formatSurveyDataForEmail } = require('./zapier-integration');
+const { Configuration, PlaidApi, PlaidEnvironments } = require('plaid');
 
 // Load environment variables
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
+const NODE_ENV = process.env.NODE_ENV || 'development';
+const IS_PRODUCTION = NODE_ENV === 'production';
+
+// Log environment on startup
+console.log(`🚀 Starting Luni Backend in ${NODE_ENV.toUpperCase()} mode`);
 
 // Initialize Supabase client (with proper validation)
 let supabase = null;
@@ -20,11 +26,51 @@ const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (supabaseUrl && supabaseKey && 
     supabaseUrl.trim() !== '' && supabaseKey.trim() !== '' &&
     supabaseUrl !== 'your_supabase_project_url' && 
-    supabaseKey !== 'your_supabase_service_role_key') {
+    supabaseKey !== 'your_supabase_service_role_key' &&
+    !supabaseUrl.includes('your-project-url')) {
   supabase = createClient(supabaseUrl, supabaseKey);
   console.log('✅ Supabase client initialized');
 } else {
-  console.log('⚠️  Supabase not configured - running in development mode');
+  if (IS_PRODUCTION) {
+    console.error('❌ PRODUCTION WARNING: Supabase not configured! Survey data will not be saved.');
+  } else {
+    console.log('⚠️  Supabase not configured - running in development mode');
+  }
+}
+
+// Initialize Plaid client
+let plaidClient = null;
+const plaidClientId = process.env.PLAID_CLIENT_ID;
+const plaidSecret = process.env.PLAID_SECRET;
+const plaidEnv = process.env.PLAID_ENV || 'sandbox';
+
+if (plaidClientId && plaidSecret && 
+    plaidClientId !== 'your-plaid-client-id' &&
+    plaidSecret !== 'your-plaid-secret' &&
+    plaidSecret !== 'your-plaid-production-secret') {
+  const configuration = new Configuration({
+    basePath: PlaidEnvironments[plaidEnv],
+    baseOptions: {
+      headers: {
+        'PLAID-CLIENT-ID': plaidClientId,
+        'PLAID-SECRET': plaidSecret,
+      },
+    },
+  });
+  plaidClient = new PlaidApi(configuration);
+  console.log(`✅ Plaid client initialized (${plaidEnv} environment)`);
+  
+  // Warn if production app is using test environment
+  if (IS_PRODUCTION && plaidEnv !== 'production') {
+    console.warn(`⚠️  WARNING: Running in PRODUCTION mode but Plaid is set to '${plaidEnv}' environment!`);
+    console.warn(`⚠️  Change PLAID_ENV to 'production' and use production Plaid credentials.`);
+  }
+} else {
+  if (IS_PRODUCTION) {
+    console.error('❌ PRODUCTION WARNING: Plaid not configured! Banking features will not work.');
+  } else {
+    console.log('⚠️  Plaid not configured - OAuth endpoints will not work');
+  }
 }
 
 // Middleware
@@ -56,6 +102,104 @@ app.use(express.urlencoded({ extended: true }));
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', message: 'Luni Backend API is running' });
+});
+
+// Plaid link token creation endpoint
+// This creates a link_token for initializing Plaid Link in the mobile app
+app.post('/api/plaid/link/token/create', async (req, res) => {
+  try {
+    const { user_id } = req.body;
+
+    if (!user_id) {
+      return res.status(400).json({ error: 'user_id is required' });
+    }
+
+    if (!plaidClient) {
+      return res.status(503).json({ error: 'Plaid is not configured on the server' });
+    }
+
+    // Create a link token
+    const response = await plaidClient.linkTokenCreate({
+      user: {
+        client_user_id: user_id,
+      },
+      client_name: 'Luni',
+      products: ['transactions'],
+      country_codes: ['CA'], // Canada
+      language: 'en',
+      redirect_uri: 'https://luni.ca/plaid-oauth', // OAuth redirect URI
+    });
+
+    res.json({ 
+      link_token: response.data.link_token,
+      expiration: response.data.expiration,
+      request_id: response.data.request_id,
+      success: true 
+    });
+
+  } catch (error) {
+    console.error('Plaid link token creation error:', error);
+    res.status(500).json({ 
+      error: error.response?.data?.error_message || 'Failed to create link token',
+      details: error.message 
+    });
+  }
+});
+
+// Plaid public token exchange endpoint
+// This exchanges a public_token (from Plaid Link) for an access_token
+app.post('/api/plaid/token/exchange', async (req, res) => {
+  try {
+    const { public_token, user_id } = req.body;
+
+    if (!public_token) {
+      return res.status(400).json({ error: 'public_token is required' });
+    }
+
+    if (!plaidClient) {
+      return res.status(503).json({ error: 'Plaid is not configured on the server' });
+    }
+
+    // Exchange the public_token for an access_token
+    const response = await plaidClient.itemPublicTokenExchange({
+      public_token: public_token
+    });
+
+    const accessToken = response.data.access_token;
+    const itemId = response.data.item_id;
+    
+    // Here you would typically save the access_token and item_id to your database
+    // associated with the user_id
+    if (supabase && user_id) {
+      try {
+        await supabase
+          .from('plaid_items')
+          .insert([{
+            user_id: user_id,
+            access_token: accessToken,
+            item_id: itemId,
+            created_at: new Date().toISOString()
+          }]);
+        console.log('✅ Plaid item saved to database');
+      } catch (dbError) {
+        console.error('⚠️  Failed to save to database:', dbError.message);
+        // Don't fail the request if DB save fails
+      }
+    }
+    
+    res.json({ 
+      access_token: accessToken,
+      item_id: itemId,
+      success: true 
+    });
+
+  } catch (error) {
+    console.error('Plaid token exchange error:', error);
+    res.status(500).json({ 
+      error: error.response?.data?.error_message || 'Failed to exchange public token',
+      details: error.message 
+    });
+  }
 });
 
 // Survey submission endpoint
@@ -205,6 +349,17 @@ app.use('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
+  const separator = '='.repeat(60);
+  console.log(`\n${separator}`);
   console.log(`🚀 Luni Backend API running on port ${PORT}`);
+  console.log(`📊 Environment: ${NODE_ENV.toUpperCase()}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
+  
+  if (IS_PRODUCTION) {
+    console.log(`\n⚠️  PRODUCTION MODE ACTIVE`);
+    console.log(`   - Ensure all production credentials are configured`);
+    console.log(`   - Plaid should use production environment`);
+    console.log(`   - CORS configured for production URLs`);
+  }
+  console.log(`${separator}\n`);
 });

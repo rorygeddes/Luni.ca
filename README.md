@@ -1,18 +1,26 @@
 # Luni - Smart Budgeting for Students
 
-A React + Node.js budgeting app for students with survey functionality.
+A React + Node.js budgeting app for students with survey functionality and Plaid banking integration.
+
+**🚀 Now configured for PRODUCTION MODE** - See [`PRODUCTION_GUIDE.md`](./PRODUCTION_GUIDE.md) for deployment instructions.
 
 ## 📁 Project Structure
 
 ```
+Luni.ca/
 ├── frontend/          # React app (TypeScript + Tailwind)
-├── backend/           # Node.js API (Express + Supabase)
+├── backend/           # Node.js API (Express + Supabase + Plaid)
 ├── docs/              # Documentation & PRD
-├── deploy/            # Deployment files
 └── package.json       # Monorepo config
 ```
 
 ## 🚀 Quick Start
+
+⚠️ **This project is configured for PRODUCTION mode by default.**
+
+For production deployment, see **[`PRODUCTION_GUIDE.md`](./PRODUCTION_GUIDE.md)**
+
+For local development:
 
 ### 1. Install Dependencies
 ```bash
@@ -21,15 +29,24 @@ npm run install:all
 ```
 
 ### 2. Setup Environment
-```bash
-# Backend
-cp backend/env.example backend/.env
-# Edit backend/.env with your Supabase & Zapier keys
 
-# Frontend  
-cp frontend/.env.example frontend/.env
-# Edit frontend/.env with your API URL
+**Backend** - Create `backend/.env`:
+```bash
+cp backend/env.example backend/.env
 ```
+
+Edit `backend/.env` and add your credentials:
+- For **production**: Use production Plaid keys, set `PLAID_ENV=production`
+- For **local testing**: Use sandbox keys, set `PLAID_ENV=sandbox`, `NODE_ENV=development`
+
+**Frontend** - Create `frontend/.env`:
+```bash
+cp frontend/env.example frontend/.env
+```
+
+Edit `frontend/.env`:
+- For **production**: Use your deployed backend URL
+- For **local testing**: Use `http://localhost:5001`
 
 ### 3. Start Development
 ```bash
@@ -52,18 +69,15 @@ npm run dev
 ### Backend (`/backend`)
 - **Express.js** REST API
 - **Supabase** integration for database
+- **Plaid** integration for banking/financial data
 - **Zapier** integration for automation
 - **CORS** enabled for cross-origin requests
 
 ### Documentation (`/docs`)
 - Product Requirements Documents
 - Survey questions and specifications
+- Plaid OAuth integration guide
 - Development guidelines
-
-### Deployment (`/deployment`)
-- Production server configurations
-- Deployment scripts and instructions
-- Environment-specific configurations
 
 ## 🛠️ Available Scripts
 
@@ -84,18 +98,40 @@ npm run dev
 ## 🔧 Environment Configuration
 
 ### Backend Environment Variables
+Create `backend/.env` from `backend/env.example`:
+
 ```env
 PORT=5001
+
+# Supabase Configuration
 SUPABASE_URL=your_supabase_url
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+
+# Zapier Integration (for survey notifications)
 ZAPIER_WEBHOOK_URL=your_zapier_webhook_url
+
+# Plaid Configuration (for banking integration)
+PLAID_CLIENT_ID=your_plaid_client_id
+PLAID_SECRET=your_plaid_secret
+PLAID_ENV=sandbox
+# PLAID_ENV options: sandbox, development, production
+
+# CORS Configuration
 FRONTEND_URL=http://localhost:3000,https://yourdomain.com
 ```
 
 ### Frontend Environment Variables
+Create `frontend/.env` from `frontend/env.example`:
+
 ```env
 REACT_APP_API_URL=http://localhost:5001
 ```
+
+### Getting Plaid Credentials
+1. Sign up at https://dashboard.plaid.com/
+2. Get your Client ID and Secret from Team Settings → Keys
+3. Add OAuth redirect URI: `https://luni.ca/plaid-oauth`
+4. See `docs/PLAID_OAUTH_QUICKSTART.md` for complete setup
 
 ## 🚀 Deployment
 
@@ -114,10 +150,12 @@ REACT_APP_API_URL=http://localhost:5001
 ## 📊 Features
 
 - **Survey System**: Collect user feedback with Supabase storage
+- **Plaid Banking Integration**: Connect bank accounts via OAuth for transaction data
 - **Zapier Integration**: Automate email notifications and workflows
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
 - **TypeScript**: Type-safe development
 - **Modern UI**: Clean, professional design with gold accent colors
+- **OAuth Redirect Page**: Seamless deep linking for Flutter mobile app integration
 
 ## 🔒 Security
 
