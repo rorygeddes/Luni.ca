@@ -2,7 +2,7 @@
 
 A React + Node.js budgeting app for students with survey functionality and Plaid banking integration.
 
-**🚀 Now configured for PRODUCTION MODE** - See [`PRODUCTION_GUIDE.md`](./PRODUCTION_GUIDE.md) for deployment instructions.
+**🚀 Now configured for PRODUCTION MODE** - See [`docs/deployment/PRODUCTION_GUIDE.md`](./docs/deployment/PRODUCTION_GUIDE.md) for deployment instructions.
 
 ## 📁 Project Structure
 
@@ -18,7 +18,7 @@ Luni.ca/
 
 ⚠️ **This project is configured for PRODUCTION mode by default.**
 
-For production deployment, see **[`PRODUCTION_GUIDE.md`](./PRODUCTION_GUIDE.md)**
+For production deployment, see **[`docs/deployment/PRODUCTION_GUIDE.md`](./docs/deployment/PRODUCTION_GUIDE.md)**
 
 For local development:
 
@@ -74,10 +74,11 @@ npm run dev
 - **CORS** enabled for cross-origin requests
 
 ### Documentation (`/docs`)
-- Product Requirements Documents
-- Survey questions and specifications
-- Plaid OAuth integration guide
-- Development guidelines
+- **[Documentation Index](./docs/README.md)** - Complete documentation overview
+- **[PLAID Integration](./docs/plaid/)** - PLAID setup and configuration guides
+- **[Deployment](./docs/deployment/)** - Production deployment and configuration
+- **[Project Structure](./docs/project/)** - Project organization and setup
+- **[Product Requirements](./docs/Prd/)** - PRD and specifications
 
 ## 🛠️ Available Scripts
 
@@ -131,7 +132,7 @@ REACT_APP_API_URL=http://localhost:5001
 1. Sign up at https://dashboard.plaid.com/
 2. Get your Client ID and Secret from Team Settings → Keys
 3. Add OAuth redirect URI: `https://luni.ca/plaid-oauth`
-4. See `docs/PLAID_OAUTH_QUICKSTART.md` for complete setup
+4. See [`docs/plaid/PLAID_OAUTH_QUICKSTART.md`](./docs/plaid/PLAID_OAUTH_QUICKSTART.md) for complete setup
 
 ## 🚀 Deployment
 
