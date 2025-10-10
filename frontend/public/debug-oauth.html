@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plaid OAuth Handler - Luni</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f5f5f5;
+        }
+        .section { 
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .error { background: #ffe6e6; border-color: #ff6b6b; }
+        .success { background: #e6ffe6; border-color: #4caf50; }
+        .info { background: #e6f3ff; border-color: #2196f3; }
+        .warning { background: #fff3cd; border-color: #ffc107; }
+        pre { 
+            background: #f5f5f5;
+            padding: 12px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 13px;
+            border: 1px solid #ddd;
+        }
+        h1 { color: #333; margin-bottom: 10px; }
+        h2 { color: #555; font-size: 18px; margin-top: 0; }
+        .status { font-weight: bold; padding: 4px 8px; border-radius: 4px; display: inline-block; }
+        .status.success { background: #4caf50; color: white; }
+        .status.error { background: #ff6b6b; color: white; }
+        .status.pending { background: #ffc107; color: black; }
+        .loading { text-align: center; padding: 40px; }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #EAB308;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        button {
+            background: #EAB308;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        button:hover { background: #d99e07; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <h1>🏦 Luni - Plaid OAuth Handler</h1>
+    <p style="color: #666;">Processing your bank connection...</p>
+    
+    <div id="loading" class="section info loading">
+        <div class="spinner"></div>
+        <p>Please wait while we complete your bank connection...</p>
+    </div>
+
+    <div id="status-section" class="section" style="display: none;">
+        <h2>Connection Status</h2>
+        <div id="status-content"></div>
+    </div>
+    
+    <div id="debug-section" class="section" style="display: none;">
+        <h2>🔍 Debug Information</h2>
+        <div id="debug-content"></div>
+    </div>
+    
+    <div id="params-section" class="section info" style="display: none;">
+        <h2>URL Parameters</h2>
+        <div id="params-content"></div>
+    </div>
+    
+    <div id="storage-section" class="section" style="display: none;">
+        <h2>Browser Storage</h2>
+        <div id="storage-content"></div>
+    </div>
+    
+    <div id="error-section" class="section error" style="display: none;">
+        <h2>❌ Error</h2>
+        <div id="error-content"></div>
+        <button onclick="retryConnection()" style="margin-top: 15px;">Retry Connection</button>
+        <button onclick="closeWindow()" style="margin-left: 10px; background: #666;">Close</button>
+    </div>
+
+    <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+    <script>
+        // Log everything for debugging
+        console.log('🔍 Plaid OAuth Handler Loaded');
+        console.log('URL:', window.location.href);
+        console.log('Query:', window.location.search);
+
+        let plaidHandler = null;
+        let linkToken = null;
+
+        // Show debug info in console
+        function logDebug(message, data = null) {
+            const timestamp = new Date().toISOString();
+            console.log(`[${timestamp}] ${message}`, data || '');
+        }
+
+        // Update UI with status
+        function updateStatus(status, message, isError = false) {
+            const statusSection = document.getElementById('status-section');
+            const statusContent = document.getElementById('status-content');
+            const loading = document.getElementById('loading');
+            
+            loading.style.display = 'none';
+            statusSection.style.display = 'block';
+            statusSection.className = isError ? 'section error' : 'section success';
+            
+            const statusClass = isError ? 'error' : 'success';
+            statusContent.innerHTML = `
+                <p><span class="status ${statusClass}">${status}</span></p>
+                <p>${message}</p>
+            `;
+        }
+
+        // Show error
+        function showError(error, details = '') {
+            logDebug('❌ Error occurred:', { error, details });
+            
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error-section').style.display = 'block';
+            
+            const errorContent = document.getElementById('error-content');
+            errorContent.innerHTML = `
+                <p><strong>Error:</strong> ${error}</p>
+                ${details ? `<p><strong>Details:</strong> ${details}</p>` : ''}
+                <p style="margin-top: 15px; color: #666;">
+                    This usually happens when:<br>
+                    • The OAuth session expired<br>
+                    • The bank connection was cancelled<br>
+                    • There was a network issue<br>
+                </p>
+            `;
+        }
+
+        // Show debug information
+        function showDebugInfo() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const debugContent = document.getElementById('debug-content');
+            const paramsContent = document.getElementById('params-content');
+            const storageContent = document.getElementById('storage-content');
+            
+            // URL Parameters
+            let paramsHtml = '<pre>';
+            if (urlParams.toString()) {
+                for (const [key, value] of urlParams) {
+                    paramsHtml += `${key}: ${value}\n`;
+                }
+            } else {
+                paramsHtml += 'No parameters found';
+            }
+            paramsHtml += '</pre>';
+            paramsContent.innerHTML = paramsHtml;
+            
+            // Storage
+            const storedToken = localStorage.getItem('plaid_link_token') || 
+                               sessionStorage.getItem('plaid_link_token');
+            storageContent.innerHTML = `
+                <p>Link Token: ${storedToken ? '✅ Found' : '❌ Not found'}</p>
+                <p>LocalStorage keys: ${localStorage.length}</p>
+                <p>SessionStorage keys: ${sessionStorage.length}</p>
+            `;
+            
+            // Show sections
+            document.getElementById('params-section').style.display = 'block';
+            document.getElementById('storage-section').style.display = 'block';
+            document.getElementById('debug-section').style.display = 'block';
+        }
+
+        // Handle OAuth flow
+        async function handleOAuthFlow() {
+            try {
+                logDebug('🚀 Starting OAuth handler');
+                
+                // Get URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const oauthStateId = urlParams.get('oauth_state_id');
+                const error = urlParams.get('error');
+                
+                logDebug('OAuth State ID:', oauthStateId);
+                logDebug('Error param:', error);
+
+                // Check for errors in URL
+                if (error) {
+                    throw new Error(`OAuth error: ${error}`);
+                }
+
+                // Check for oauth_state_id
+                if (!oauthStateId) {
+                    logDebug('⚠️ No oauth_state_id, showing debug info');
+                    updateStatus('WAITING', 'No OAuth state ID found. This page handles OAuth redirects from banks.', false);
+                    showDebugInfo();
+                    return;
+                }
+
+                // Get link token from storage
+                linkToken = localStorage.getItem('plaid_link_token') || 
+                           sessionStorage.getItem('plaid_link_token');
+                
+                logDebug('Link Token from storage:', linkToken ? 'Found' : 'Not found');
+
+                if (!linkToken) {
+                    throw new Error('Link token not found in storage. Please restart the connection process from the app.');
+                }
+
+                // Check if Plaid SDK is loaded
+                if (typeof Plaid === 'undefined') {
+                    throw new Error('Plaid SDK not loaded. Please refresh the page.');
+                }
+
+                logDebug('✅ All checks passed, continuing OAuth flow');
+                updateStatus('PROCESSING', 'Continuing bank connection...', false);
+
+                // Create Plaid Link handler to continue OAuth flow
+                plaidHandler = Plaid.create({
+                    token: linkToken,
+                    receivedRedirectUri: window.location.href,
+                    onSuccess: async (public_token, metadata) => {
+                        logDebug('✅ OAuth Success!', { metadata });
+                        updateStatus('SUCCESS', 'Bank connected successfully! Redirecting...', false);
+                        
+                        // Store the public token for the app to exchange
+                        localStorage.setItem('plaid_public_token', public_token);
+                        localStorage.setItem('plaid_metadata', JSON.stringify(metadata));
+                        
+                        // Close window or redirect back to app
+                        setTimeout(() => {
+                            if (window.opener) {
+                                window.opener.postMessage({
+                                    type: 'PLAID_OAUTH_SUCCESS',
+                                    public_token,
+                                    metadata
+                                }, '*');
+                                window.close();
+                            } else {
+                                // Redirect to app
+                                window.location.href = '/';
+                            }
+                        }, 2000);
+                    },
+                    onExit: (err, metadata) => {
+                        logDebug('🚪 OAuth Exit', { err, metadata });
+                        
+                        if (err) {
+                            showError('Connection cancelled or failed', err.error_message || JSON.stringify(err));
+                        } else {
+                            updateStatus('CANCELLED', 'Bank connection was cancelled.', true);
+                        }
+                        
+                        showDebugInfo();
+                    },
+                    onEvent: (eventName, metadata) => {
+                        logDebug('📊 Event:', eventName, metadata);
+                    }
+                });
+
+                // Open Plaid Link (it will automatically continue the OAuth flow)
+                logDebug('🔗 Opening Plaid Link to continue OAuth');
+                plaidHandler.open();
+
+            } catch (error) {
+                logDebug('❌ Fatal error:', error);
+                showError(error.message || 'Unknown error occurred', error.stack);
+                showDebugInfo();
+            }
+        }
+
+        // Retry connection
+        function retryConnection() {
+            window.location.reload();
+        }
+
+        // Close window
+        function closeWindow() {
+            if (window.opener) {
+                window.close();
+            } else {
+                window.location.href = '/';
+            }
+        }
+
+        // Start the OAuth flow when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            logDebug('✅ DOM loaded, starting OAuth handler');
+            
+            // Wait for Plaid SDK to load
+            const checkPlaid = setInterval(() => {
+                if (typeof Plaid !== 'undefined') {
+                    clearInterval(checkPlaid);
+                    logDebug('✅ Plaid SDK loaded');
+                    handleOAuthFlow();
+                }
+            }, 100);
+            
+            // Timeout after 10 seconds
+            setTimeout(() => {
+                if (typeof Plaid === 'undefined') {
+                    clearInterval(checkPlaid);
+                    showError('Plaid SDK failed to load', 'Please check your internet connection and try again.');
+                    showDebugInfo();
+                }
+            }, 10000);
+        });
+
+        // Listen for messages from parent window
+        window.addEventListener('message', (event) => {
+            logDebug('📨 Received message:', event.data);
+            
+            if (event.data.type === 'PLAID_LINK_TOKEN') {
+                linkToken = event.data.token;
+                localStorage.setItem('plaid_link_token', linkToken);
+                logDebug('✅ Link token received from parent');
+            }
+        });
+    </script>
+</body>
+</html>
