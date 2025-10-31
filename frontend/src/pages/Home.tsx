@@ -3,41 +3,91 @@ import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   return (
-    <div className="min-h-screen relative bg-white">
-      {/* Hero Section - Extended to half screen */}
-      <section className="pt-40 md:pt-48 pb-20 px-4 sm:px-6 lg:px-8 min-h-[50vh] md:min-h-[60vh] flex items-center">
-        <div className="max-w-7xl mx-auto w-full">
-          <div className="text-center mb-16">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-gray-900 leading-tight">
-              Fix Your Money Problems
-            </h1>
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed">
-              Luni is an AI Financial System that brings your money management systems all into one simple place. Now you can limit your financial stress and feel in control of your spending.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Link 
-                to="/survey" 
-                className="bg-gradient-to-r from-system-accent to-system-accent-light text-white px-10 py-5 rounded-full text-xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                Join the Beta
-              </Link>
+    <div className="min-h-screen relative bg-white overflow-x-hidden">
+      {/* Hero Section with Split Layout */}
+      <section className="pt-32 md:pt-40 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Content */}
+            <div className="text-center lg:text-left order-2 lg:order-1">
+              <div className="inline-block mb-4 px-3 py-1 rounded-full bg-gradient-to-r from-system-accent/20 to-system-accent-light/20 border border-system-accent/30">
+                <span className="text-sm font-medium text-system-accent">Now Available</span>
+              </div>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-gray-900 leading-tight">
+                Fix Your Money Problems
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-600 mb-4 max-w-2xl mx-auto lg:mx-0">
+                A Private Platform for Smart Financial Management
+              </p>
+              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                Luni is an AI Financial System that brings your money management systems all into one simple place. Now you can limit your financial stress and feel in control of your spending.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link 
+                  to="/survey" 
+                  className="bg-gradient-to-r from-system-accent to-system-accent-light text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  Join the Beta
+                </Link>
+                <Link 
+                  to="/why" 
+                  className="border-2 border-system-accent text-system-accent px-8 py-4 rounded-full text-lg font-semibold hover:bg-system-accent hover:text-white transition-all duration-300"
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Side - Mobile Mockup */}
+            <div className="order-1 lg:order-2 flex justify-center items-center">
+              <div className="relative w-full max-w-[400px]">
+                <div className="absolute inset-0 bg-gradient-to-br from-system-accent/10 via-transparent to-transparent rounded-3xl blur-3xl"></div>
+                <div className="relative bg-gradient-to-br from-system-accent/5 to-transparent rounded-3xl p-8 border border-system-accent/20 shadow-2xl">
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="rounded-2xl overflow-hidden shadow-lg border-2 border-system-accent/30 bg-white">
+                      <img 
+                        src="/track.png" 
+                        alt="Track your spending" 
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                    <div className="rounded-2xl overflow-hidden shadow-lg border-2 border-system-accent/30 bg-white">
+                      <img 
+                        src="/split.png" 
+                        alt="Split bills with friends" 
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                    <div className="rounded-2xl overflow-hidden shadow-lg border-2 border-system-accent/30 bg-white">
+                      <img 
+                        src="/plan.png" 
+                        alt="Plan your money" 
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Track -> Split -> Plan Header Above Images */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8">
+      {/* Track -> Split -> Plan Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Track → Split → Plan
             </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              All your financial management in one simple place
+            </p>
           </div>
 
-          {/* Three Screenshots - Prominently Displayed */}
+          {/* Three Screenshots - Centered */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center group">
               <div className="rounded-3xl border-2 border-system-accent/30 bg-gradient-to-br from-system-accent/5 to-transparent p-6 shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 transform hover:-translate-y-2">
                 <img 
                   src="/track.png" 
@@ -51,7 +101,7 @@ const Home: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center group">
               <div className="rounded-3xl border-2 border-system-accent/30 bg-gradient-to-br from-system-accent/5 to-transparent p-6 shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 transform hover:-translate-y-2">
                 <img 
                   src="/split.png" 
@@ -65,7 +115,7 @@ const Home: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center group">
               <div className="rounded-3xl border-2 border-system-accent/30 bg-gradient-to-br from-system-accent/5 to-transparent p-6 shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 transform hover:-translate-y-2">
                 <img 
                   src="/plan.png" 
