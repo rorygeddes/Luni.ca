@@ -5,7 +5,7 @@ const Investors: React.FC = () => (
     <div className="max-w-5xl mx-auto">
       <h1 className="text-4xl md:text-5xl font-bold text-system-text mb-6">Investor Brief</h1>
       <p className="text-system-text mb-4">Market, product, traction, tech, monetization, roadmap.</p>
-      <a className="inline-block px-5 py-3 rounded-lg bg-gradient-to-r from-system-accent to-system-accent-light text-white" href="#">Download One-Pager</a>
+      <button className="inline-block px-5 py-3 rounded-lg bg-gradient-to-r from-system-accent to-system-accent-light text-white font-semibold cursor-pointer hover:shadow-lg transition-all duration-300">Download One-Pager</button>
     </div>
   </div>
 );
