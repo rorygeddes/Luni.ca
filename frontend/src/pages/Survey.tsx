@@ -239,7 +239,7 @@ const Survey: React.FC = () => {
     <div className="min-h-screen relative">
       {/* Survey Header - Only show on first question */}
       {currentQuestionIndex === 0 && (
-        <section className="pt-16 pb-8 px-4 sm:px-6 lg:px-8">
+        <section className="pt-40 md:pt-48 pb-8 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-8">
               <div className="relative">
@@ -260,7 +260,7 @@ const Survey: React.FC = () => {
       )}
 
       {/* Flashcard Survey */}
-      <section className={`px-4 sm:px-6 lg:px-8 pb-32 flex items-start justify-center ${currentQuestionIndex === 0 ? 'pt-2' : 'pt-24'}`}>
+      <section className={`px-4 sm:px-6 lg:px-8 pb-32 flex items-start justify-center ${currentQuestionIndex === 0 ? 'pt-2' : 'pt-40 md:pt-48'}`}>
         <div className="max-w-2xl mx-auto w-full">
           {/* Progress Bar */}
           <div className="mb-8">
